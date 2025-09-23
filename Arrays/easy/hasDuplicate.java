@@ -6,9 +6,10 @@ import java.util.Set;
 class hasDuplicate {
     public boolean hasDuplicate(int[] nums) {
         Set<Integer> set= new HashSet<>();
-        for (Integer integer : set) {
+        for (Integer integer : nums) {
             set.add(integer);
         }
-        return (set.size()==nums.length);
+        if (set.size()==nums.length) return false;
+        else return set.size()<nums.length;
     }
 }
