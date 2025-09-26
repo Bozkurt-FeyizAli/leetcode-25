@@ -1,29 +1,25 @@
-import java.util.TreeSet;
 class Solution {
     public int longestConsecutive(int[] nums) {
+        HashSet<Integer> map= new HashSet<>();
+        for (int i = 0; i < nums.length; i++) {
+            map.add(nums[i]);
+        }
         int res=0;
-        TreeSet<Integer> map= new TreeSet<>();
-        for (Integer integer : nums) {
-            map.add(integer);
-        }
-        int before= map.first();
-        int l=0;
-        for (Integer integer : map.descendingSet()) {
-            if((before-integer)==1){
+        HashSet<Integer> visited= new HashSet<>();
+        for (int i = 0; i < nums.length; i++) {
+            int n=nums[i];
+            if(map.contains(n-1)||visited.contains(n)) continue;
+            int l=1;
+            visited.add(n);
+            while(map.contains(n+1)){
                 l++;
+                n=n+1;
             }
-            else if(l>res){
-                    res=l+1;
-                    l=0;
+            if(l>res){
+                res=l;
             }
-            before=integer;
-            System.out.println(integer);
-            
         }
-        System.out.println(l);
-        if(l>res){
-                    res=l+1;
-            }
         return res;
     }
 }
+
