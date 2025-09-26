@@ -71,13 +71,11 @@ class Solution {
     public static boolean hasDuplicateAll9(char[][] arr){
         Set<Character> set= new HashSet<>();
         int l=0;
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < arr[0].length; j++) {
-                char c = arr[i][j];
-                if(c != '.'){set.add(c);
-                l++;}
+        for (int i = 0; i < 9; i+=3) {
+            for (int j = 0; j < 9; j+=3) {
+                if(!hasDuplicate9(arr, i, j)) return false;;
             }
         }
-        return l!=set.size();
+        return true;
     }
 }
