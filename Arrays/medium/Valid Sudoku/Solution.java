@@ -55,10 +55,23 @@ class Solution {
         return l!=set.size();
     }
 
-    public static boolean hasDuplicate9(char[][] arr){
+    public static boolean hasDuplicate9(char[][] arr, int frx, int fry){
         Set<Character> set= new HashSet<>();
         int l=0;
-        for (int i = 0; i < arr.length; i++) {
+        for (int i = fry; i <fry+3; i++) {
+            for (int j = frx; j < frx+3; j++) {
+                char c = arr[i][j];
+                if(c != '.'){set.add(c);
+                l++;}
+            }
+        }
+        return l!=set.size();
+    }
+
+    public static boolean hasDuplicateAll9(char[][] arr){
+        Set<Character> set= new HashSet<>();
+        int l=0;
+        for (int i = 0; i < 9; i++) {
             for (int j = 0; j < arr[0].length; j++) {
                 char c = arr[i][j];
                 if(c != '.'){set.add(c);
@@ -67,5 +80,4 @@ class Solution {
         }
         return l!=set.size();
     }
-    
 }
