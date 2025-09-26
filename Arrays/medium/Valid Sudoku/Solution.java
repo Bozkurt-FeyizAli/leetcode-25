@@ -9,7 +9,7 @@ class Solution {
         for (int i = 0; i < board.length; i++) {
             if(hasDuplicateColumn(board, i)) return false;
         }
-        if(hasDuplicateAll9(board)) return false;
+        if(!hasDuplicateAll9(board)) return false;
         return true;
     }
 
