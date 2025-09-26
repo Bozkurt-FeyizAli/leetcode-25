@@ -3,36 +3,15 @@ import java.util.Set;
 
 class Solution {
     public boolean isValidSudoku(char[][] board) {
-        int sum='1'+'2'+'3'+'4'+'5'+'6'+'7'+'8'+'9';
-        // for (int i = 0; i < board.length; i++) {
-        //     if(sumRow(board, i)!=sum) return false;
-        // }
-        // for (int i = 0; i < board.length; i++) {
-        //     if(sumColumn(board, i)!=sum) return false;
-        // }
         for (int i = 0; i < board.length; i++) {
             if(hasDuplicateRow(board, i)) return false;
         }
         for (int i = 0; i < board.length; i++) {
             if(hasDuplicateColumn(board, i)) return false;
         }
+        if(hasDuplicateAll9(board)) return false;
         return true;
     }
-
-    // public static int sumRow(char[][] row, int n){
-    //     int res=0;
-    //     for (char c : row[n]) {
-    //         res+=c;
-    //     }
-    //     return res;
-    // }
-    // public static int sumColumn(char[][] row, int n){
-    //     int res=0;
-    //     for (int i = 0; i < row.length; i++) {
-    //         res+=row[i][n];
-    //     }
-    //     return res;
-    // }
 
     public static boolean hasDuplicateRow(char[][] row, int n){
         Set<Character> set= new HashSet<>();
@@ -69,11 +48,9 @@ class Solution {
     }
 
     public static boolean hasDuplicateAll9(char[][] arr){
-        Set<Character> set= new HashSet<>();
-        int l=0;
         for (int i = 0; i < 9; i+=3) {
             for (int j = 0; j < 9; j+=3) {
-                if(!hasDuplicate9(arr, i, j)) return false;;
+                if(hasDuplicate9(arr, i, j)) return false;
             }
         }
         return true;
