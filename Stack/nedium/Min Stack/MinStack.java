@@ -1,8 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-
-import javax.swing.plaf.SliderUI;
 
 class MinStack {
     ArrayList<Integer> list;
@@ -21,18 +17,19 @@ class MinStack {
     }
     
     public void pop() {
-        System.out.print(list.get(size-1));
+        if(size<1) return;
+        list.remove(size-1);
+        size--;
     }
     
     public int top() {
         if(size<1) return -1;
         int n=list.get(size-1);
-        list.remove(n);
-        size--;
         return n;
     }
     
     public int getMin() {
+        if(size<0) return -1;
         int min=list.get(0);
         for (Integer integer : list) {
             if(integer<min)
